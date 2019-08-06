@@ -1,5 +1,5 @@
-create database if not exists ${DB};
-use ${DB};
+create database if not exists ${hiveconf:DB};
+use ${hiveconf:DB};
 
 drop table if exists lineitem;
 create external table lineitem 
@@ -20,7 +20,7 @@ create external table lineitem
  L_SHIPMODE STRING,
  L_COMMENT STRING)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE 
-LOCATION '${LOCATION}/lineitem';
+LOCATION '${hiveconf:LOCATION}/lineitem';
 
 drop table if exists part;
 create external table part (P_PARTKEY BIGINT,
@@ -33,7 +33,7 @@ create external table part (P_PARTKEY BIGINT,
  P_RETAILPRICE DOUBLE,
  P_COMMENT STRING) 
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE 
-LOCATION '${LOCATION}/part/';
+LOCATION '${hiveconf:LOCATION}/part/';
 
 drop table if exists supplier;
 create external table supplier (S_SUPPKEY BIGINT,
@@ -44,7 +44,7 @@ create external table supplier (S_SUPPKEY BIGINT,
  S_ACCTBAL DOUBLE,
  S_COMMENT STRING) 
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE 
-LOCATION '${LOCATION}/supplier/';
+LOCATION '${hiveconf:LOCATION}/supplier/';
 
 drop table if exists partsupp;
 create external table partsupp (PS_PARTKEY BIGINT,
@@ -53,7 +53,7 @@ create external table partsupp (PS_PARTKEY BIGINT,
  PS_SUPPLYCOST DOUBLE,
  PS_COMMENT STRING)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE
-LOCATION'${LOCATION}/partsupp';
+LOCATION'${hiveconf:LOCATION}/partsupp';
 
 drop table if exists nation;
 create external table nation (N_NATIONKEY BIGINT,
@@ -61,14 +61,14 @@ create external table nation (N_NATIONKEY BIGINT,
  N_REGIONKEY BIGINT,
  N_COMMENT STRING)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE
-LOCATION '${LOCATION}/nation';
+LOCATION '${hiveconf:LOCATION}/nation';
 
 drop table if exists region;
 create external table region (R_REGIONKEY BIGINT,
  R_NAME STRING,
  R_COMMENT STRING)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE
-LOCATION '${LOCATION}/region';
+LOCATION '${hiveconf:LOCATION}/region';
 
 drop table if exists customer;
 create external table customer (C_CUSTKEY BIGINT,
@@ -80,7 +80,7 @@ create external table customer (C_CUSTKEY BIGINT,
  C_MKTSEGMENT STRING,
  C_COMMENT STRING)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE
-LOCATION '${LOCATION}/customer';
+LOCATION '${hiveconf:LOCATION}/customer';
 
 drop table if exists orders;
 create external table orders (O_ORDERKEY BIGINT,
@@ -93,4 +93,4 @@ create external table orders (O_ORDERKEY BIGINT,
  O_SHIPPRIORITY INT,
  O_COMMENT STRING)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE
-LOCATION '${LOCATION}/orders';
+LOCATION '${hiveconf:LOCATION}/orders';
